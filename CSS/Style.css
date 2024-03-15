@@ -1,0 +1,750 @@
+/* Global */
+/* Reset CSS --> Xóa những CSS của trình duyệt */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    /* Để trải nghiệm trôi mượt mà cần thêm thuộc tính */
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #212529;
+    background-color: white;
+    /* Khoảng cách giữa các chữ, trong 1 chữ */
+    letter-spacing: 1px; 
+}
+
+/* Button chung nên khai báo để nhận cùng 1 nguyên tắc chung */
+button {
+    background-color: #ff0e83;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 13px 32px;
+    font-size: 0.875rem;
+    /* Biểu tượng bàn tay, dùng cursor: pointer */
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.6s;
+    font-weight: 700;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+    border-color: #ff0e83;
+}
+
+/* Khi nhìn thấy có nhiều thẻ H2 lặp lại, cần xét những tính năng chung */
+h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+/* CSS of Header */
+/* Để màu ở thẻ header để phủ toàn bộ thẻ */
+header{
+    background-color: #4e2a84;
+/* Để chỉnh độ rộng của header */
+    padding: 20px 0;
+/* Để cố định thẻ header, tuy nhiên thẻ ngắn lại, nên xét thêm wiht */
+    position: fixed;
+/* thêm wiht:100% để thẻ bình thường */
+    width: 100%;
+/* Khi sử dụng flex thì tính theo thứ tự ưu tiên, thằng sau đc ưu tiên hơn thằng trước, nên cần xét ưu tiên lại */
+    z-index: 9999;
+}
+/* Dùng width 70% để canh giữa 2 bên */
+.header_content{
+    width: 70%;
+    margin: 0 auto;
+    /* Cho logo và phần nav nằm cùng 1 hàng, xem lại kỹ phần lý thuyết flex */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+/* Xóa dấu chấm tròn đi */
+.header_content ul{
+    list-style: none;
+}
+/* Đổi thẻ li từ block sang inline để lên cùng 1 hàng */
+.header_content ul li{
+    display: inline;
+    margin: 0 1rem;
+}
+/* Xóa gạch dưới và chữ màu trắng */
+.header_content ul a{
+    text-decoration: none;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    /* Cần phải thêm vào trước khi hover */
+    /* transition-property: all;
+    transition-duration: 1s;
+    transition-delay: 0s;
+    transition-timing-function: linear; */
+    /* Viết rút gọn */
+    transition: all 0.6s;
+
+}
+/* Để đổi màu ở phần tử nào thì hover vào ở thẻ đó */
+.header_content ul a:hover{
+    color: #ff0e83;
+}
+
+/* Chỉnh logo */
+.header_content p{
+    color: white;
+    /* Font-size tính đơn vị bằng rem, 1rem= font-size khai báo ở html */
+    font-size: 2.3rem;
+}
+
+/* class = "active" sẽ luôn màu hồng */
+.header_content ul .active a{
+    color: #ff0e83;
+}
+
+/* CAROUSEL */
+.carousel {
+    background-image: url(../Img/b3.jpg);
+    height: 800px;
+    /* Sử dụng chức năng này để kéo hình ra hết thẻ cha */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    /* Canh giữa bằng kỹ thuật flex vs thẻ cha, thì bắt buộc chỉ có 1 thẻ con */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel_content h1 {
+    font-size: 3.5rem;
+}
+
+.carousel_content p {
+    font-size: 1.1rem;
+    /* chỉ cần sử dụng padding ở thẻ p để đẩy trên dưới */
+    padding: 23px 0;
+}
+
+/* CSS of INTRO, sử dụng Grid */
+.intro {
+    display: grid;
+    /* Không cần gom hàng */
+    /* grid-template-columns: 25% 25% 25% 25%; */
+    /* Cách viết gọn: 4 cột, mỗi cột 25% */
+    /* grid-template-columns: repeat(4, 25%); */
+    /* fr phân số  ==> mỗi cột có kích thước 1/4*/
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Item nào cần gom phải đặt class riêng, để chút gọi ra */
+
+.intro_ab1 {
+    /* gom cột thì sử dụng grid-column */
+    /* số line đường kẻ bắt đầu */
+    /* số line đường kẻ kết thúc */
+    /* Số cột item chiếm */
+    /* grid-column:2 / 4; */
+    /* cách viết 2, số line bắt đầu, số cột gom */
+    grid-column: 2 / span 2;
+}
+
+.intro_bake {
+/* grid-column: 1 / span 2; */
+    grid-column: 1 / 3;
+}
+
+.intro_ab4 {
+    grid-column: 3 / span 2;
+}
+
+.intro_item img {
+    width: 100%;
+    display: block;
+/* Xử lý hình bị màu trắng không đều */
+    height: 100%;
+}
+
+/* Sử dụng flex để canh giữa các thành phần item */
+.intro_item {
+    display: flex;
+    align-items: center;
+    text-align: center;
+/* Sử dụng padding để canh giữa mỗi item, không sử dụng justify-content: center */
+/* padding: 0 2rem; đóng lại do ảnh hưởng khe hở ở hình*/
+}
+/* ==> Do sử dụng padding ở intro_item ảnh hưởng đến hình có khe hở, nên cần tạo class riêng intro_text để chỉnh */
+.intro_text {
+    padding: 0 2rem;
+}
+
+/* Chỉnh các thẻ đồng nhất cùng một CSS */
+.intro_item h3 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.intro_item p {
+    color: #c1a5a5;
+    font-size: 0.875rem;
+    line-height: 30px;
+}
+
+/* Sử dụng selecter trong CSS để gọi chỉnh màu từng item, không cần đặt class riêng */
+.intro .intro_item:first-child{
+    background-color: #4e2a84;
+}
+/* Sử dụng nth-child(n) để chỉ item thứ n */
+.intro .intro_item:nth-child(3){
+    background-color: #ff0e83;
+}
+.intro .intro_item:nth-child(4){
+    background-color: #ed6498;
+}
+.intro .intro_item:nth-child(6){
+    background-color: #836eaa;
+}
+.intro .intro_item:nth-child(8){
+    background-color: #4e2a84;
+}
+
+/* CSS of NUMBER */
+/* Để canh thẻ number rộng ra xử dụng padding */
+
+.number {
+    padding: 70px 0;
+}
+
+
+/* Sử dụng flex để canh các item lên cùng 1 hàng */
+.number_content {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.number_item p:first-child {
+    font-size: 2rem;
+    color: #4e2a84;
+    font-weight: 600;
+}
+
+.number_item p:last-of-type {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    padding: 24px 0;
+}
+
+    /* CSS of SERVICES */
+.services {
+    background-image: url(../Img/s1.jpg);
+    background-size: cover;
+    text-align: center;
+/* Khoảng cách phần chữ được đẩy ra */
+    padding: 70px 0;
+}
+
+.services h2 {
+    color: white;
+}
+
+.services_content {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.services_item {
+    padding: 0 20px;
+}
+
+.services_item i {
+    width: 105px;
+    height: 105px;
+    border: 1px solid #4e2a84;
+    background-color: white;
+    color: #4e2a84;
+    font-size: 3.75rem;
+    border-radius: 50%;
+/* dùng line-hight để canh giữa icon, do icon như chữ */
+    line-height: 105px;
+/* liên quan đến hover cần thêm transition */
+    transition: all 0.6s;
+
+}
+
+.services_item h3 {
+    font-size: 1.5rem;
+    margin: 17px 0;
+    font-weight: 500;
+
+}
+.services_item p {
+    font-size: 0.875rem;
+    line-height: 25px;
+    padding-bottom: 12px;
+}
+.services_item button {
+    padding: 12px 27px;
+    border-width: 2px;
+}
+
+/* Rê chuột vào thẻ cha services_item thì thẻ con i đổi màu */
+.services_item:hover i {
+    color: #ff0e83;
+    
+}
+
+/* CSS of GALLERY */
+
+.gallery_content {
+    display: grid;
+    grid-template-columns: repeat(4 1fr);
+ /*gap phải đi cùng với thẻ đc gọi display: grid  */
+    gap: 30px;
+    padding: 0 15px;
+}
+
+.gallery_g1 {
+    grid-column: 1 / span 2;
+}
+.gallery_g6 {
+    grid-column: 3 / span 2;
+}
+.gallery_item img {
+    width: 100%;
+    height: 100%;
+}
+
+.gallery {
+/* Sử dụng padding để canh khoảng cách của thẻ h2 */
+    padding: 70px 0;
+}
+
+.gallery_item {
+    position: relative;
+/* Xử lý thẻ con bị lố ra khỏi vùng của thẻ con bằng cách overlow: hidden*/
+/* Do thẻ p chỉnh transition: 50px */
+    overflow: hidden;
+}
+
+.gallery_overlay {
+/* Khi sử dụng position: absolute, thì phải tìm thẻ cha của nó ==> cần gọi gallery_item ra */
+    position: absolute;
+/* Vì phủ 100% thẻ cha, nên xét */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(48, 132, 163, 0.2);
+    color: white;
+    padding: 38px 28px;
+    text-align: right;
+
+}
+
+/* Để chỉnh cho dòng chữ ở thẻ p xuống phía dưới bên phải */
+/* 1. gọi thẻ p ra */
+.gallery_overlay p {
+    position: absolute;
+    bottom: 38px;
+    right: 28px;
+    font-size: 0.75rem;
+    transform: translateY(50px);
+    transition: all 0.6s;
+    opacity: 0;
+}
+.gallery_item:hover .gallery_overlay p {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+
+.gallery_overlay h3 {
+    font-size: 1.875rem;
+/* Sử dụng traform để dịch chuyển phần tử ==> xử lý hover khi rê chuột vào */
+    transform: translateY(20px);
+    transition: all 0.6s;
+}
+
+/* PHÂN TÍCH :hover, thẻ cha nhận chuột, thẻ con thay đổi, gọi thẻ cha ra trước */
+/* Cha nhận chuột đc gắn :hover */
+.gallery_item:hover .gallery_overlay h3 {
+/* Nguyên tắc vận hành của transform, phần tử đã dịch chuyển, khi rê chuột vào mới quay về chỗ cũ */
+    transform: translateY(0px);
+}
+
+
+.gallery_overlay h3 span {
+    font-weight: 300;
+}
+
+/* Chức năng ::before và ::after là cách để thêm trước hoặc sau của 1 thẻ nào đó, nó có thuộc tính inline */
+/* Ví dụ cho cách hiện thị 2 chức năng này */
+/* Khi sử dụng ::before và ::after phải có content */
+/* .gallery_overlay h3::before {
+    content: "The";
+}
+.gallery_overlay h3::after {
+    content: "....!";
+} */
+
+.gallery_overlay h3::after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    display: block;
+    background-color: white;
+    margin: 10px;
+/* Xử lý ẩn hiện bằng chức năng opacity ==> ẩn là 0, hiện là 1 */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s;
+}
+.gallery_item:hover .gallery_overlay h3::after {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+/* CSS of TEAM */
+.team {
+    background-color: #4e2a84;
+    padding: 70px 0;
+}
+
+.team h2 {
+    color: white;
+}
+
+.team_content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px 30px;
+
+    width: 75%;
+    margin: 0 auto;
+}
+
+.team_item img {
+    width: 100%;
+    display: block;
+}
+
+.team_item {
+    position: relative;
+}
+
+.team_item h3 {
+    font-size: 1.3rem;
+}
+.team_item p {
+    font-size: 0.875rem;
+    line-height: 28px;
+}
+
+/* Để chỉnh thẻ team_title nằm trên thẻ cha team_item sử dụng position: absolute */
+/* Xong rồi gọi thẻ cha .team_item để xét position: relative; */
+.team_title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #ff0e83;
+    color: white;
+/* Khi sử dụng chức năng position: absolute; chiều dài thẻ sẽ phủ đủ nội dung ==> cần xét thêm with cho nó */
+    width: 100%;
+    padding: 30px;
+/* team_title hiện nên cho opacity là 1 */
+    opacity: 1;
+    transition: all 0.6s;
+}
+
+/* Chỉnh thẻ team_details để phủ lên thẻ cha */
+.team_details {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(14, 12, 12, 0.6);
+    color: white;
+    padding: 100px 40px;
+    opacity: 0;
+    transition: all 0.6s;
+}
+
+/* XỬ LÝ HOVER RÊ CHUỘT VÀO THẺ CHA THÌ HIỆN THẺ CON */
+.team_item:hover .team_title {
+    opacity: 0;
+}
+.team_item:hover .team_details {
+    opacity: 1;
+}
+/* DONE XỬ LÝ ĐÓNG MỞ TEAM_ITEM, CẦN XEM LẠI */
+
+
+
+.team_details h3 {
+    color: #ff0e83;
+}
+.team_text {
+    margin: 8px 0;
+}
+.team_socials {
+    margin-top: 2px;
+}
+.team_socials i {
+    width: 37px;
+    height: 37px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
+    line-height: 37px;
+    margin: 0 5px;
+    transition: all 0.6s;
+}
+
+/* Hover đổi màu chữ icon thành màu hồng, xong thêm vào transition cho thẻ được hover */
+.team_socials i:hover {
+    color: #ff0e83;
+    border-color: #ff0e83;
+}
+
+/* FEEDBACK of CSS */
+.feedback {
+    background-image: url(../Img/cc1.jpg);
+    background-size: cover;
+    padding: 70px 0;
+}
+.feedback h2 {
+    color: white;
+}
+.feedback_content {
+    width: 75%;
+    margin: 0 auto;
+    border: 3px solid #ff0e83;
+    background-color: rgba(245, 240, 240, 0.687);
+    text-align: center;
+    padding: 32px;
+}
+.feedback_content i {
+    font-size: 1.3rem;
+    color: blue;
+    padding: 0 18px;
+}
+.feedback_content p {
+    line-height: 30px;
+    letter-spacing: 1.3px;
+}
+.feedback_content .feedback_name {
+    color: white;
+    font-weight: 600;
+}
+
+/* Màu của button đến từ thư viện carousel nên muốn chỉnh phải vào đường dẫn để coppy và thêm thẻ cha để không chỉnh tất cả. */
+.feedback_content .owl-theme .owl-dots .owl-dot span {
+    background: rgba(14, 12, 12, 0.6);
+}
+
+/* CSS of CONTACT, sử dụng kỹ thuật grid để xử lý */
+.contact {
+    padding: 70px 0;
+}
+
+.contact .contac_form {
+    width: 70%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 30px;
+}
+.contac_form textarea, .contac_form button {
+    grid-column: 1 / span 2;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.contac_form input {
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.6s;
+}
+/* Xử lý focus do trình duyệt tự thêm, đồng thời thêm shadow */
+.contac_form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25)
+}
+.contac_form textarea {
+    border: 1px solid black;
+    /* Không cho người dùng kéo cái form rộng ra */
+    resize: none;
+}
+.contac_form textarea:focus {
+    outline: none;
+}
+.contac_form textarea::placeholder {
+    color: black;
+}
+/* Xử lý button: Chữ màu đen, không bo tròn */
+.contac_form button {
+    border-radius: 0;
+    color: black;
+    transition: all 0.6s;
+}
+
+/* Xử lý hover */
+.contac_form button:hover {
+    color: white;
+    background-color: #212529;
+    border: 1px solid black;
+}
+
+/* Xử lý MAP */
+.contac_map iframe {
+    width: 100%;
+    padding: 50px;
+}
+
+/* Sử dụng flex để xử lý */
+.contac_info {
+    display: flex;
+    /* Đây là chức năng chính đi theo display: flex */
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 50px;
+}
+.contac_info i {
+    font-size: 2rem;
+    color: #4e2a84;
+}
+.contac_info p {
+    font-size: 0.8rem;
+    margin: 10px 0;
+}
+
+/* CSS of FOOTER */
+footer {
+    padding: 50px 0;
+    background-color: black;
+    color: white;
+}
+.footer_main {
+    width: 70%;
+    margin: 0 auto;
+
+    display: flex;
+    padding-bottom: 50px;
+}
+.footer_item {
+    width: 25%;
+    padding: 0 20px;
+}
+.footer_item h3 {
+    font-size: 1.3rem;
+    color: #ff0e83;
+    margin-bottom: 1rem;
+}
+.footer_item p {
+    font-size: 0.8rem;
+    line-height: 28px;
+    padding-bottom: 1rem;
+}
+.footer_time {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted white;
+}
+
+.footer_item input {
+    margin-bottom: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.footer_item .footer_sub input:focus {
+    outline: none;
+}
+
+.footer_item button {
+    padding: 8px 16px;
+    color: black;
+    font-weight: 700;
+    margin-bottom: 24px;
+
+}
+.footer_item button:hover {
+    border-color: #212529;
+}
+
+.footer_socials i {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    margin-right: 10px;
+    border: 1px solid white;
+    transition: all 0.6s;
+}
+
+.footer_socials i:hover {
+    color: #ff0e83;
+    border-color: #ff0e83;
+}
+
+.footer_coppyright {
+    text-align: center;
+}
+.footer_coppyright span {
+    color: #ff0e83;
+    font-weight: 600;
+}
+
+/* CSS of BACKTO TOP */
+.backToTop {
+    /* Để cho nút đi theo trang web khi di chuyển */
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+/* Thay đổi để ẩn nút  */
+/* Visibility:visible thành hidden */
+/* Opacity:1 thành 0 */
+    visibility: hidden;
+    opacity: 0;
+}
+/* Sử dụng đoạn CSS của hướng dẫn, rồi xét thêm thuộc tính cho nút */
+.cd-top--is-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+.backToTop {
+    color: red;
+    border: 2px solid blue;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    text-align: center;
+    /* canh giữa dùng line-height */
+    line-height: 36px;
+    border-radius: 50%;
+}
+
